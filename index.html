@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زوم عکس خودکار</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background: #f9f9f9;
+    text-align: center;
+    padding: 50px;
+  }
+
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  .zoomable {
+    width: 320px;
+    max-width: 90%;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: zoom-in;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .zoomed {
+    transform: scale(1.8);
+    cursor: zoom-out;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+</style>
+</head>
+<body>
+
+<h2>برای زوم، روی عکس کلیک کن 👇</h2>
+
+<!-- 🖼 فقط اسم یا لینک عکس را اینجا بگذار -->
+<img src="ayneh.png" alt="عکس شما" id="zoomImg" class="zoomable">
+
+<script>
+  const img = document.getElementById('zoomImg');
+
+  // جلوگیری از کش شدن عکس
+  const src = img.getAttribute('src');
+  img.setAttribute('src', `${src}?nocache=${new Date().getTime()}`);
+
+  // زوم درجا با کلیک
+  img.addEventListener('click', () => {
+    img.classList.toggle('zoomed');
+  });
+</script>
+
+</body>
+</html>
